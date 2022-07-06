@@ -1,0 +1,7 @@
+<% @favorite_posts.each do |post| %>
+<%= post.title %>
+<%end%>
+
+<% @favorite_users.each do |user| %>
+<%= link_to user.name, public_post_path(user) %><br>
+<%end%>

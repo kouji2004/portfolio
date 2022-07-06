@@ -1,0 +1,12 @@
+<p>プロフィール</p>
+<%= image_tag current_user.profile_image %>
+<%= current_user.profile&.name %>
+<%= current_user.profile&.gender_i18n %>
+
+
+  <% if @user.name != "guestuser" %>
+  <%= link_to "edit", edit_public_profile_path %>
+  <% end %>
+
+
+<p><%=link_to"お気に入り記事", favorites_public_profile_path(@user) %></p>

@@ -1,0 +1,10 @@
+<div class="container m-auto">
+<p>転倒の事例</p>
+
+<% @posts.each do |post| %>
+<%= link_to post.title, public_post_path(post) %>
+<%end%>
+
+<br><%= link_to "投稿作成ページへ", new_public_post_path %>
+
+</div>

@@ -1,0 +1,53 @@
+<p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %>
+
+    <p>どんな症状ですか？</p>
+    <%= @post.title %>
+  
+       <p>日常生活で転びそうな箇所を教えてください</p>
+        <%= @post.body %><br>
+        <%= link_to "ホームpageへ", root_path %>
+
+            <% @post.images.each do |image| %>
+              <%= image_tag(image, width:100)  %>
+            <% end %>
+
+              <% if @post.user == current_user %>
+                <%= link_to "削除", public_post_path(@post), method: :delete %>
+              <% end %>
+
+                   <!--いいね機能-->
+                      <% if @post.favorited_by?(current_user) %>
+                        <%= link_to public_post_favorites_path(@post), method: :delete do %>
+                          <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+                          <%= @post.favorites.count %> いいね
+                        <% end %>
+                      <% else %>
+                        <%= link_to public_post_favorites_path(@post), method: :post do %>
+                          <i class="fas fa-heart" aria-hidden="true"></i>
+                          <%= @post.favorites.count %> いいね
+                        <% end %>
+                      <% end %>
+
+                <!--コメント表示-->
+                    <div>
+                      <p>コメント件数：<%= @post.comments.count %></p>
+                      <% @post.comments.each do |comment| %>
+                          <p><%= image_tag comment.user.profile_image %></p>
+                          <%= comment.user.name %>
+                          <%= comment.created_at.strftime('%Y/%m/%d') %>
+                          <%= comment.comment %>
+                          
+                          <!--コメントした人だけが削除できる-->
+                            <% if comment.user == current_user %>
+                              <%= link_to "削除", public_post_comment_path(comment.post, comment), method: :delete %>
+                            <% end %>
+                      <% end %>
+                    </div>
+
+                    <!--コメント投稿-->
+                    <div>
+                      <%= form_with model: [@post, @comment], url: public_post_comments_path(@post) do |f| %>
+                        <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+                        <%= f.submit "送信する" %>
+                      <% end %>
+                    </div>

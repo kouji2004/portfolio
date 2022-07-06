@@ -1,0 +1,17 @@
+<% @posts.each do |post| %>
+<%= image_tag 'sample-author1.jpg' %>
+<p>どんな症状ですか</p>
+<%= post.title %>
+<p>転倒時の状況</p>
+<%= post.body %>
+<p>日常で危険だと思う場所をイラストで教えてください</p>
+<%= link_to post.illust, public_post_path(post) %>
+<p>転ばない為に何が必要ですか</p>
+<%= post.prevention %><br>
+
+<% post.images.each do |image| %>
+  <%= image_tag(image, width:100)  %>
+<% end %>
+
+<%end%>
+
