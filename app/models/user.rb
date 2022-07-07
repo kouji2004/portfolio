@@ -7,8 +7,10 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
 
       has_many :comments, dependent: :destroy
+      
          # いいね機能
               has_many :favorites, dependent: :destroy
+              
             # 投稿いいね一覧
                     has_many :favorite_posts, through: :favorites, source: :post
 
@@ -44,8 +46,6 @@ class User < ApplicationRecord
                                               end
                                             end
 
-
-
                                                       # 検索方法分岐
                                                         def self.looks(search, word)
                                                           if search == "perfect_match"
@@ -60,5 +60,4 @@ class User < ApplicationRecord
                                                             @user = User.all
                                                           end
                                                         end
-
 end

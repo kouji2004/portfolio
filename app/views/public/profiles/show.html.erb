@@ -1,5 +1,5 @@
 <p>プロフィール</p>
-<%= image_tag current_user.profile_image %>
+<%= image_tag current_user.profile_image,size:"50x50" %>
 <%= current_user.profile&.name %>
 <%= current_user.profile&.gender_i18n %>
 

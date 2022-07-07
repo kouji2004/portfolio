@@ -2,7 +2,7 @@
 
     <p>どんな症状ですか？</p>
     <%= @post.title %>
-  
+
        <p>日常生活で転びそうな箇所を教えてください</p>
         <%= @post.body %><br>
         <%= link_to "ホームpageへ", root_path %>
@@ -11,10 +11,12 @@
               <%= image_tag(image, width:100)  %>
             <% end %>
 
-              <% if @post.user == current_user %>
+
+              <% if @post.user == current_user||admin_signed_in? %>
                 <%= link_to "削除", public_post_path(@post), method: :delete %>
               <% end %>
 
+                    <% unless admin_signed_in? %>
                    <!--いいね機能-->
                       <% if @post.favorited_by?(current_user) %>
                         <%= link_to public_post_favorites_path(@post), method: :delete do %>
@@ -27,7 +29,7 @@
                           <%= @post.favorites.count %> いいね
                         <% end %>
                       <% end %>
-
+                    <%end%>
                 <!--コメント表示-->
                     <div>
                       <p>コメント件数：<%= @post.comments.count %></p>
@@ -36,7 +38,7 @@
                           <%= comment.user.name %>
                           <%= comment.created_at.strftime('%Y/%m/%d') %>
                           <%= comment.comment %>
-                          
+
                           <!--コメントした人だけが削除できる-->
                             <% if comment.user == current_user %>
                               <%= link_to "削除", public_post_comment_path(comment.post, comment), method: :delete %>

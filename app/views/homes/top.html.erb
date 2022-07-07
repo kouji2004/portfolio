@@ -1,10 +1,20 @@
 <div class="container m-auto">
 <p>転倒の事例</p>
 
-<% @posts.each do |post| %>
-<%= link_to post.title, public_post_path(post) %>
-<%end%>
 
-<br><%= link_to "投稿作成ページへ", new_public_post_path %>
+<div class="d-flex flex-wrap ">
+    <% @posts.each do |post| %>
+<div class="card d-flex" style="width: 18rem;">
+  <img src="" class="card-img-top" alt="...">
+   <!--<#%= image_tag current_user.profile_image,size:"200x200", class:"card-img-top" %>-->
+  <div class="card-body">
+    <h5 class="card-title"><%= link_to post.title, public_post_path(post) %></h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">投稿者のページへ</a>
+  </div>
+</div>
+
+    　<%end%>
+</div>
 
 </div>
