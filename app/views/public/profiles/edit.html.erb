@@ -9,6 +9,12 @@
 <%= f.label :gender, '性別' %>
 <%= f.select :gender, Profile.genders_i18n.invert %>
 
+
+<%= f.label :subbody, '一言' %>
+<%= f.text_field :subbody %>
+
+<%= f.label :mainbody, '自己紹介' %>
+<%= f.text_field :mainbody %>
 <%= f.submit "更新" %>
 
 <% end %>

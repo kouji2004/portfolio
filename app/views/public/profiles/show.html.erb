@@ -1,12 +1,37 @@
-<p>プロフィール</p>
 <%= image_tag current_user.profile_image,size:"50x50" %>
-<%= current_user.profile&.name %>
+
 <%= current_user.profile&.gender_i18n %>
 
 
-  <% if @user.name != "guestuser" %>
-  <%= link_to "edit", edit_public_profile_path %>
-  <% end %>
+
+        <h1 class="heading-lv1 text-center">Profile</h1>
+               <figure class="profile-image">
+            <%= image_tag current_user.profile_image,size:"50x50" %>
+        </figure>
 
 
-<p><%=link_to"お気に入り記事", favorites_public_profile_path(@user) %></p>
+
+        <%if !current_user.profile.nil? %>
+        <h2 class="heading-lv2 text-center"><%= @user.name %></h2>
+        <% else%>
+          <p class="text text-center">ゲストユーザー</p>
+        <% end %>
+
+
+        <p class="text text-center">一言</p>
+
+        <%if !current_user.profile.nil? %>
+        <p class="text text-center"><%= @profile&.subbody %></p>
+        <% else%>
+          <p class="text text-center">ここに一言文が入ります</p>
+        <% end %>
+
+        <h3 class="heading-lv3 text-center">自己紹介</h3>
+        <p class="text text-center"><%= @profile&.mainbody %></p>
+       <p class="text text-center">ここに自己紹介文が入ります</p>
+
+        <p class="text text-center"><a href="./links.html"><%=link_to"お気に入り記事", favorites_public_profile_path(@user) %></a></p>
+
+    <% if @user.name != "guestuser" %>
+      <p><%= link_to "edit", edit_public_profile_path, class:"text text-center" %></p>
+    <% end %>

@@ -16,6 +16,10 @@ def favorites
  @favorite_users = Post.all.map {|post|post.favorite_users}.flatten.uniq
 end
 
+def create
+end
+
+
 def update
   @profile = current_user.profile_prepare
   # 特定の物だけを変更（名前、性別、写真など）↓assign_attributes
@@ -30,6 +34,6 @@ end
 
 private
 def profile_params
-  params.require(:profile).permit(:name, :gender, :image)
+  params.require(:profile).permit(:name, :gender, :image, :subbody ,:mainbody)
 end
 end

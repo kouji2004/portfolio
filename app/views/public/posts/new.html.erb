@@ -10,15 +10,19 @@
           <th>転倒時の状況</th>
           <td><%= f.text_area :body %></td>
         </tr>
-        <tr>
-          <th>日常で危険だと思う場所をイラストで教えてください</th>
-          <td><%= f.text_area :illust %></td>
-        </tr>
+
         <tr>
           <th>転ばない為に何が必要ですか</th>
           <td> <%= f.text_area :prevention %></td>
         </tr>
+        <tr>
+          <th>日常で危険だと思う場所をイラストで教えてください</th>
+          <td><%= f.text_area :illust %></td>
+        </tr>
       </table>
+
+
+
         <%= f.file_field :images, multiple: true %><br>
         <%= f.submit "click" %>
         <% end %>

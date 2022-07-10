@@ -150,3 +150,46 @@ textarea::placeholder {
   width: 300px;
 }
 
+// ここからプロフィール
+h1 {
+    font-size: 32px;
+    // font-style: italic;
+}
+
+.text {
+    margin: 16px 0 0;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.text-center {
+    text-align: center;
+}
+
+#text {
+    font-size: 16px;
+}
+
+.heading-lv1 {
+    font-size: 32px;
+    font-style: italic;
+}
+
+.heading-lv2 {
+    font-size: 24px;
+}
+
+.heading-lv3 {
+    font-size: 20px;
+}
+
+.profile-image {
+    margin: 16px 0 0;
+    text-align: center;
+}
+
+.profile-image img {
+    width: 150px;
+    height: auto;
+    border-radius: 50%;
+}

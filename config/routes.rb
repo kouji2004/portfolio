@@ -22,7 +22,7 @@ root to: "homes#top"
           resources :comments, only:[:create, :destroy]
       end
 
-       resource :profile, only:[:index,:show, :edit, :update] do
+       resource :profile, only:[:index,:show, :edit, :update, :create] do
            member do
              get :favorites
            end
