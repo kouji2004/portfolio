@@ -13,8 +13,11 @@ Rails.application.routes.draw do
 
 root to: "homes#top"
 
-   namespace :public, only:[:new, :index, :show, :edit ,:create, :destroy] do
+   namespace :public, only:[:new, :index, :show, :edit, :create, :destroy] do
      resources :posts do
+       collection do
+            get "log" => "posts#log"
+       end
           resource :favorites, only: [:create, :destroy]
           resources :comments, only:[:create, :destroy]
       end

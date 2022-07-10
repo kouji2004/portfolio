@@ -1,8 +1,9 @@
-<div class="container m-auto">
-<p>転倒の事例</p>
+<div class="container-fluid m-auto">
+  <%= image_tag "jaddy.jpg", class:"top-image" %>
 
+<p class= "top-title">転倒の事例</p>
 
-<div class="d-flex flex-wrap ">
+<div class="d-flex flex-wrap top-main">
     <% @posts.each do |post| %>
 <div class="card d-flex" style="width: 18rem;">
   <img src="" class="card-img-top" alt="...">
