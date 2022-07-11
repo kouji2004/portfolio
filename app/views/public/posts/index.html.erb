@@ -1,17 +1,19 @@
 <% @posts.each do |post| %>
-<%= image_tag 'sample-author1.jpg' %>
-<p>どんな症状ですか</p>
-<%= post.title %>
-<p>転倒時の状況</p>
-<%= post.body %>
-<p>日常で危険だと思う場所をイラストで教えてください</p>
-<%= link_to post.illust, public_post_path(post) %>
-<p>転ばない為に何が必要ですか</p>
-<%= post.prevention %><br>
+     <figure class="profile-image">
+        <%= image_tag current_user.profile_image,size:"50x50" %>
+    </figure>
+      <p>どんな症状ですか</p>
+      <h2><%= post.title %> </h2>
+      <p>転倒時の状況</p>
+      <h2 ><%= post.body %></h2>
+      <p>日常で危険だと思う場所をイラストで教えてください</p>
+      <%= link_to post.illust, public_post_path(post) %>
+      <p>転ばない為に何が必要ですか</p>
+      <h2 ><%= post.prevention %><br></h2>
 
-<% post.images.each do |image| %>
-  <%= image_tag(image, width:100)  %>
-<% end %>
+      <% post.images.each do |image| %>
+        <%= image_tag(image, width:100)  %>
+      <% end %>
 
 <%end%>
 
