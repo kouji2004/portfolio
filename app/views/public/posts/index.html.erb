@@ -2,18 +2,15 @@
      <figure class="profile-image">
         <%= image_tag current_user.profile_image,size:"50x50" %>
     </figure>
-      <p>どんな症状ですか</p>
+      <p>どこで転びましたか？</p>
       <h2><%= post.title %> </h2>
       <p>転倒時の状況</p>
       <h2 ><%= post.body %></h2>
-      <p>日常で危険だと思う場所をイラストで教えてください</p>
-      <%= link_to post.illust, public_post_path(post) %>
       <p>転ばない為に何が必要ですか</p>
       <h2 ><%= post.prevention %><br></h2>
-
+      <p>日常で危険だと思う場所をイラストで教えてください</p>
       <% post.images.each do |image| %>
-        <%= image_tag(image, width:100)  %>
-      <% end %>
-
+      <%= image_tag(image, width:400, height:300)  %>
+      <%end%>
 <%end%>
 

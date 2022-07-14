@@ -9,30 +9,66 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-     <div class="container heder-top">
-       <%= image_tag "logo.png", size:"100x100" %>
-          <% if user_signed_in? %>
-            <div class="search_form  ">
-              <%= form_with url: search_path, local: true, method: :get do |f| %>
-                <%= f.text_field :word %>
-                <%= f.select :range, options_for_select([['User'], ['Post']]) %>
-                <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"], ["部分一致","partial_match"]]) %>
-                <%= f.submit "検索", class: "btn btn-primary" %>
-              <% end %>
-            </div>
-          <% end %>
-     </div>
-
-
-   <body class="d-flex flex-column vh-100">
-    <header class="shadow-sm pt-5 ">
+<div class="d-flex">
+  <div>
       <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"><%= image_tag "logo.png", size:"100x100" %></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <% if user_signed_in? %>
+                <li class="nav-item">
+                 <%= link_to "ホームページ", root_path, class: 'nav-link text-dark ' %>
+                </li>
+                 <li class="nav-item">
+                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+                </li>
+                 <li class="nav-item">
+                 <%= link_to '投稿フォーム', new_public_post_path, class: 'nav-link text-dark' %>
+                </li>
+                 <li class="nav-item">
+                  <%= link_to '投稿一覧', public_posts_path, class: 'nav-link text-dark' %>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                 <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
+                </li>
+                 <li class="nav-item">
+                 <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
+                </li>
+                 <li class="nav-item">
+                <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
+                </li>
+              <% end %>
+            </ul>
+             </div>
+          </div>
+       </div>
+
+            <div class="d-flex mt-5 heder-top">
+                  <a><%= link_to 'マイページ', public_profile_path, class: 'nav-link text-dark' %></a>
+                   <a><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %></a>
+
+            </div>
+
+
+      </nav>
+  </div>
+
+
+   </div>
+
+   <!--<body class="d-flex flex-column vh-100">-->
+   <!-- <header class="shadow-sm pt-5 ">-->
+   <!--   <nav class="navbar navbar-expand-lg navbar-light">-->
+   <!--     <div class="container">-->
+   <!--       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"-->
+   <!--                     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">-->
+   <!--         <span class="navbar-toggler-icon"></span>-->
+   <!--       </button>-->
 
 
 
@@ -76,7 +112,6 @@
         <div class="row no-gutters">
           <div class="col-md-4">
             <p>みんなで転倒を予防しよう</p>
-
           </div>
           <div class="col-md-8">
             <h6 class="text-white mt-2 mb-3">Link</h6>

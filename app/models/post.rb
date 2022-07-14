@@ -1,5 +1,11 @@
 class Post < ApplicationRecord
   belongs_to :user
+# バリデーション機能
+  validates :title,length: { maximum: 7 }
+  validates :body,length: { maximum: 100 }
+  validates :prevention,length: { maximum: 100 }
+
+  validates :images, presence: true
 
     has_many :comments, dependent: :destroy
       # いいね機能
