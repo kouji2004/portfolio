@@ -1,40 +1,44 @@
    <%= image_tag "jaddy.jpg", class:"top-image" %>
 
-    <!--<p>転倒の事例</p>-->
 <div class="container mt-5">
  <div class="row">
    <div class="col-md-9">
-    <div class="d-flex ">
-     <div>
+       <h2>皆で情報を共有して転倒を減らそう！</h2>
+     <div class=" row pt-3">
        <% @posts.each do |post| %>
+        <div class="col-md-6 pt-3 mb-5 top-border">
           <% post.images.each do |image| %>
-          <%= image_tag(image, width:400, height:300)  %>
+           <%= image_tag(image, width:400, height:300)  %>
           <% end %>
+        </div>
+
+        <div class="col-md-6 pt-5 mb5 top-border">
+         <p class="mt-5">どこで転ばれましたか？</p>
+          <h5 class="pb-5 pt-5"><%= post.title %></h5>
+          <%= link_to "詳細", public_post_path(post.id),class:"pt-5" %>
+        </div>
+         <%end%>
      </div>
-     <div class="ml-3 mt-5">
-        <h5><%= post.title %></h5>
-        <p><%=post.body %></p>
-        <%= link_to "投稿者のページへ", public_post_path(post) %>
-        <%end%>
-     </div>
-    </div>
+    <!--</div>-->
    </div>
 
   <div class="col-md-3">
-    <p>キーワードを入力</p>
+    <p class="search-top">検索</p>
     <% if user_signed_in? %>
        <%= form_with url: search_path, local: true, method: :get, class:"d-flex" do |f| %>
-        <%= f.text_field :word%>
+        <%= f.text_field :word, placeholder: "キーワードを入力" %>
         <!--<#%= f.select :range, options_for_select([['User'], ['Post']]) %>-->
        <!--<#%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"], ["部分一致","partial_match"]]) %>-->
         <%= f.submit "検索"  %>
        <% end %>
     <% end %>
 
-       <p class="post-side-title">投稿したユーザー</p>
-      <% @posts.each do |post| %>
-       <p> <%= image_tag current_user.profile_image,size:"50x50" %><%=post.user.name %></p<br>
-      <%end%>
+       <p class="search-bottom mt-3">投稿したユーザー</p>
+       <div class="search-box">
+        <% @posts.each do |post| %>
+         <p class="search-mini-box"> <%= image_tag post.user.profile_image,size:"50x50" %><%=post.user.name %></p><br>
+        <%end%>
+      </div>
   </div>
  </div>
 </div>

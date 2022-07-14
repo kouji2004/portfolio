@@ -1,5 +1,38 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+html{
+  font-size: 17px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+p,a,h1,h2,h3,h4,li {
+   font-family: YuGothic,'Yu Gothic',YuGothic,'Yu Gothic',sans-serif;
+}
+
+// ここからヘッダー
+header {
+  width: 100%;
+  background: #ccdd33;
+}
+
+.heder-top{
+  margin-left: 400px;
+  align-items: center;
+}
+
+// ここからfooter
+footer {
+  // position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: #44aa33;
+}
 
 // ここからtopページ
 .top-image{
@@ -8,12 +41,16 @@
   object-fit: cover;
 }
 
+.top-wrap{
+  flex-wrap: wrap;
+}
 
 // ここから投稿作成ページ
 .text-title {
         width: 400px;
         height: 40px;
-    }
+}
+
 .text-body{
   width: 400px;
   height: 130px;
@@ -22,4 +59,34 @@
 .text-prevention{
   width: 400px;
   height: 130px;
+}
+
+// topページもサイドバーレイアウト
+.top-border{
+  border-top: 1px solid #e1e1e1;
+}
+.search-top{
+  background-color: cornflowerblue;
+  background-color: #000;
+  text-align: center;
+  color: #fff;
+  padding: 10px 0;
+  margin-top: 10px;
+}
+.search-bottom{
+  background-color: cornflowerblue;
+  background-color: #000;
+  text-align: center;
+  color: #fff;
+  padding: 10px 0;
+  margin: 0px;
+}
+.search-box{
+  padding: 24px 20px;
+  border: 1px solid #000;
+  margin-bottom: 10px;
+}
+.search-mini-box{
+  padding: 24px 20px;
+  border-bottom: solid;
 }
