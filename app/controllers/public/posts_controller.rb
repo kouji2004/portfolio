@@ -12,6 +12,7 @@ class Public::PostsController < ApplicationController
     @comment = Comment.new
     @posts = Post.all
     @user = @post.user
+    @profile = current_user.profile
   end
 
   def new

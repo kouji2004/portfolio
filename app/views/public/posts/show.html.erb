@@ -1,82 +1,94 @@
-  <div class="split">
-    <div class="split-item split-left">
-        <div class="split-left__inner">
-          <%=@user.name %><br>
-          <%= image_tag current_user.profile_image,size:"100x100" %>
-         <p>どんな症状ですか？</p>
-           <%= @post.title %>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-9">
+      <p>どこで転びましたか？</p>
+      <%= @post.title %>
+      <p>転倒時の状況</p>
+      <%= @post.body %>
+      <p>日常生活で転びそうな箇所を教えてください</p>
+      <%= @post.body %><br>
+      <p>コメント件数：<%= @post.comments.count %></p>
 
-           <p>日常生活で転びそうな箇所を教えてください</p>
-            <%= @post.body %><br>
-            <p>コメント件数：<%= @post.comments.count %></p>
-            <% @post.images.each do |image| %>
-              <%= image_tag(image, width:100)  %>
+        <% @post.images.each do |image| %>
+          <%= image_tag(image, width:500, height:500 )  %>
+        <% end %>
+        <br>
+          <% if @post.user == current_user||admin_signed_in? %>
+            <%= link_to "削除", public_post_path(@post), method: :delete %>
+          <% end %>
+            <% unless admin_signed_in? %>
+            <!--いいね機能-->
+              <% if @post.favorited_by?(current_user) %>
+                <%= link_to public_post_favorites_path(@post), method: :delete do %>
+                <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+                <%= @post.favorites.count %> いいね
+              <% end %>
+              <% else %>
+                <%= link_to public_post_favorites_path(@post), method: :post do %>
+                <i class="fas fa-heart" aria-hidden="true"></i>
+                <%= @post.favorites.count %> いいね
+              <% end %>
+            <% end %>
+          <%end%>
+
+          <!--コメント表示-->
+        <% @post.comments.each do |comment| %>
+          <p><%= image_tag comment.user.profile_image %></p>
+          <%= comment.user.name %>
+          <%= comment.created_at.strftime('%Y/%m/%d') %>
+          <%= comment.comment %>
+
+        <!--コメントした人だけが削除できる-->
+          <% if comment.user == current_user %>
+            <%= link_to "削除", public_post_comment_path(comment.post, comment), method: :delete %>
+          <% end %>
+        <% end %>
+
+        <!--コメント投稿-->
+        <%= form_with model: [@post, @comment], url: public_post_comments_path(@post) do |f| %>
+          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに"  %>
+          <p class="mt-3" style="margin-right: 200px;"><%= f.submit "送信する" %></p>
+        <% end %>
+    </div>
+<!--ここから右サイドバー-->
+    <div class="col-md-3 text-center">
+      <div class="card">
+      <h2 class="profile-title">Profile</h2>
+      <figure class="profile-image">
+        <%= image_tag current_user.profile_image,size:"50x50" %>
+      </figure>
+        <%if current_user.name %>
+          <p><%= @user.name %></p>
+        <% else%>
+          <h2>ゲストユーザー</p>
+        <% end %>
+
+        <!--<#%if @profile.gender.nil? %>-->
+        <!--  <p><#%= @user.gender %></p>-->
+        <!--<#% else%>-->
+        <!--  <p>性別</p>-->
+        <!--<#% end %>-->
+
+           <h5>自己紹介</h5>
+            <%if @profile.mainbody.nil? %>
+              <p>よろしくお願いします。</p>
+            <% else%>
+               <p><%= @profile&.mainbody %></p>
             <% end %>
 
-              <% if @post.user == current_user||admin_signed_in? %>
-                <%= link_to "削除", public_post_path(@post), method: :delete %>
-              <% end %>
 
-                    <% unless admin_signed_in? %>
-                   <!--いいね機能-->
-                      <% if @post.favorited_by?(current_user) %>
-                        <%= link_to public_post_favorites_path(@post), method: :delete do %>
-                          <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
-                          <%= @post.favorites.count %> いいね
-                        <% end %>
-                      <% else %>
-                        <%= link_to public_post_favorites_path(@post), method: :post do %>
-                          <i class="fas fa-heart" aria-hidden="true"></i>
-                          <%= @post.favorites.count %> いいね
-                        <% end %>
-                      <% end %>
-                    <%end%>
-                <!--コメント表示-->
-                    <div style="margin-left: 200px;">
-                      <% @post.comments.each do |comment| %>
-                          <p><%= image_tag comment.user.profile_image %></p>
-                          <%= comment.user.name %>
-                          <%= comment.created_at.strftime('%Y/%m/%d') %>
-                          <%= comment.comment %>
+          <h5>一言</h5>
+            <%if @profile.subbody.nil? %>
+              <p style="text-align: initial;"></p>
+            <% else%>
+               <p ><%= @profile&.subbody %></p>
+            <% end %>
 
-                          <!--コメントした人だけが削除できる-->
-                            <% if comment.user == current_user %>
-                              <%= link_to "削除", public_post_comment_path(comment.post, comment), method: :delete %>
-                            <% end %>
-                      <% end %>
-                    </div>
-
-                    <!--コメント投稿-->
-                    <div style="margin-left: 250px;">
-                      <%= form_with model: [@post, @comment], url: public_post_comments_path(@post) do |f| %>
-                        <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに"  %>
-                        <p class="mt-3" style="margin-right: 200px;"><%= f.submit "送信する" %></p>
-                      <% end %>
-                    </div>
-        </div>
     </div>
-
-     <div class="split-item split-right ">
-       <div class="split-margin">
-             <div class="split-right__inner">
-                  <% if user_signed_in? %>
-                    <div class="search_form">
-                      <%= form_with url: search_path, local: true, method: :get, class:"d-flex" do |f| %>
-                        <%= f.text_field :word, class:"mr-1"%>
-                        <!--<#%= f.select :range, options_for_select([['User'], ['Post']]) %>-->
-                        <!--<#%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"], ["部分一致","partial_match"]]) %>-->
-                        <%= f.submit "検索", class: "btn btn-primary" %>
-                      <% end %>
-                    </div>
-                  <% end %>
-             </div>
-
-                <div class="post-each">
-                  <p>最近の投稿</p>
-                  <% @posts.each do |post| %>
-                  <p>・<%=post.title %></p<br>
-                  <%end%>
-                </div>
-       </div>
-     </div>
+  </div>
+  </div>
 </div>
+
+
+
+

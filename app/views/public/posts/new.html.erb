@@ -7,29 +7,19 @@
   </ul>
 <% end %>
 
-<div class= "container">
-  <div class="row">
-           <%= form_with model: @post, url: public_posts_path do |f| %>
-      <table  class="form-table mt-5 mb-5">
 
-        <tr>
-          <th>どこで転びましたか？</th>
-          <td><%= f.text_field :title ,class:"posts-new-text",placeholder: "7文字以内",:size => "50*50", class:"text-title" %></td>
-        </tr>
-        <tr>
-          <th>転倒時の状況</th>
-          <td><%= f.text_area :body,placeholder: "100文字以内",:size => "50*50", class:"text-body" %></td>
-        </tr>
+ <div class="text-center">
+    <%= form_with model: @post, url: public_posts_path do |f| %>
+    <h6>どこで転びましたか？</h6>
+    <p><%= f.text_field :title ,class:"posts-new-text",placeholder: "7文字以内",:size => "50*50", class:"text-title" %></p>
+    <h6>転倒時の状況</h6>
+    <p><%= f.text_area :body,placeholder: "100文字以内",:size => "50*50", class:"text-body" %></p>
 
-        <tr>
-          <th>転ばない為に何が必要ですか</th>
-          <td> <%= f.text_area :prevention,placeholder: "100文字以内",:size => "50*50", class:"text-prevention" %></td>
-        </tr>
-        <tr>
-          <th>日常で危険だと思う場所をイラストで教えてください</th>
-          <td><%= f.file_field :images, multiple: true %><%= f.submit "click" %></td>
-        </tr>
-    </table>
-        <% end %>
-  </div>
+    <h6>転ばない為に何が必要ですか</h6>
+    <p> <%= f.text_area :prevention,placeholder: "100文字以内",:size => "50*50", class:"text-prevention" %></p>
+    <h6>日常で危険だと思う場所をイラストで教えてください</h6>
+    <p class="input-image"><%= f.file_field :images, multiple: true, class:"input-image-center" %></p>
+    <%= f.submit "click" %>
+  <% end %>
 </div>
+

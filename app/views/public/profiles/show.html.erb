@@ -1,21 +1,74 @@
-        <div class="text-center">
-        <h1>Profile</h1>
-               <figure class="profile-image">
-            <%= image_tag current_user.profile_image,size:"50x50" %>
-        </figure>
+<div class="container mt-5 mb-5">
+  <div class="row">
+    <div class="col-md-9">
+      <h2><%=@user.name%>さんが投稿しました</h2>
+      <div class=" row pt-3">
+        <% @posts.each do |post| %>
+          <div class="col-md-6 pt-3 mb-5 top-border">
+            <% post.images.each do |image| %>
+              <%= image_tag(image, width:400, height:300)  %>
+            <% end %>
+          </div>
 
+          <div class="col-md-6 mb5 top-border">
+            <h5 class="mt-5">どこで転ばれましたか？</h5>
+            <p class="pb-5"><%= post.title %></p>
+            <h5>状況</h5>
+            <p><%= post.body %></p>
+            <%= link_to "詳細", public_post_path(post.id),class:"pt-5" %>
+            <p class="top-border-time">投稿日時：<%= post.created_at.strftime('%Y/%m/%d') %></p>
+          </div>
+        <%end%>
+      </div>
+    </div>
+
+<!--ここから右サイドバー-->
+    <div class="col-md-3 text-center">
+      <div class="card">
+      <h2 class="profile-title">Profile</h2>
+      <figure class="profile-image">
+        <%= image_tag current_user.profile_image,size:"50x50" %>
+      </figure>
         <%if current_user.name %>
-          <h2><%= @user.name %></h2>
+          <p><%= @user.name %></p>
         <% else%>
           <h2>ゲストユーザー</p>
         <% end %>
 
-        <h3>自己紹介</h3>
-        <p><%= @profile&.mainbody %></p>
-       <p>よろしくお願いします。</p>
+        <!--<#%if @profile.gender.nil? %>-->
+        <!--  <p><#%= @user.gender %></p>-->
+        <!--<#% else%>-->
+        <!--  <p>性別</p>-->
+        <!--<#% end %>-->
 
-        <p><a href="./links.html"><%=link_to"お気に入り記事", favorites_public_profile_path(@user) %></a></p>
+           <h4>自己紹介</h4>
+            <%if @profile&.mainbody? %>
+               <p><%= @profile&.mainbody %></p>
+            <% else%>
+              <p>皆様のお役に立つ情報を発信していきます。よろしくお願いします</p>
+            <% end %>
+
+
+          <h4>一言</h4>
+            <%if @profile&.subbody %>
+              <p style="text-align: initial;"></p>
+                 <p ><%= @profile&.subbody %></p>
+            <% else%>
+            <p>よろしくお願いします</p>
+            <% end %>
+
+        <div class="d-flex" style="text-align: center;margin-left: 60px;">
+          <p><a href="./links.html"><%=link_to"お気に入り/", favorites_public_profile_path(@user) %></a></p>
+
+            <% if @user.name != "guestuser" %>
+            <p class="ml-1"><%= link_to "編集", edit_public_profile_path, class:"text text-center" %></p>
+            <% end %>
+        </div>
+    </div>
+  </div>
+  </div>
 </div>
-    <% if @user.name != "guestuser" %>
-      <p><%= link_to "edit", edit_public_profile_path, class:"text text-center" %></p>
-    <% end %>
+
+
+
+

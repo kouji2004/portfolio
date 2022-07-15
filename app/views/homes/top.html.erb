@@ -12,10 +12,13 @@
           <% end %>
         </div>
 
-        <div class="col-md-6 pt-5 mb5 top-border">
-         <p class="mt-5">どこで転ばれましたか？</p>
-          <h5 class="pb-5 pt-5"><%= post.title %></h5>
+        <div class="col-md-6 mb5 top-border">
+         <h5 class="mt-5">どこで転ばれましたか？</h5>
+          <p class="pb-5"><%= post.title %></p>
+          <h5>状況</h5>
+          <p><%= post.body %></p>
           <%= link_to "詳細", public_post_path(post.id),class:"pt-5" %>
+          <p class="top-border-time">投稿日時：<%= post.created_at.strftime('%Y/%m/%d') %></p>
         </div>
          <%end%>
      </div>
@@ -23,10 +26,10 @@
    </div>
 
   <div class="col-md-3">
-    <p class="search-top">検索</p>
+    <p class="search-top mb-5">検索</p>
     <% if user_signed_in? %>
        <%= form_with url: search_path, local: true, method: :get, class:"d-flex" do |f| %>
-        <%= f.text_field :word, placeholder: "キーワードを入力" %>
+        <%= f.text_field :word, placeholder: "キーワードを入力",class:"top-form-text" %>
         <!--<#%= f.select :range, options_for_select([['User'], ['Post']]) %>-->
        <!--<#%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"], ["部分一致","partial_match"]]) %>-->
         <%= f.submit "検索"  %>
@@ -42,4 +45,4 @@
   </div>
  </div>
 </div>
-<%= paginate @posts %>
+<div class="paginate"><%= paginate @posts %></div>

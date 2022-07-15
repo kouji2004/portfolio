@@ -7,10 +7,10 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
 
       has_many :comments, dependent: :destroy
-      
+
          # いいね機能
               has_many :favorites, dependent: :destroy
-              
+
             # 投稿いいね一覧
                     has_many :favorite_posts, through: :favorites, source: :post
 

@@ -4,6 +4,7 @@ class Public::ProfilesController < ApplicationController
 def show
   @profile = current_user.profile
   @user = current_user
+  @posts = Post.all
 end
 
 def edit

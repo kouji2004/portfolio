@@ -1,23 +1,24 @@
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-      <div class="login-page">
-        <div class="form">
-            <h2 class="pb-3">Sign up</h2>
-              <%= f.label :name %><br>
-             <p class="message"> <%= f.text_field :name %></p>
-            <%= f.label :email %><br />
-           <p class="message"> <%= f.email_field :email, autofocus: true, autocomplete: "email" %></p>
-            <%= f.label :password %>
-            <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em>
-            <% end %><br />
-          <p class="message">  <%= f.password_field :password, autocomplete: "new-password" %></p>
-            <%= f.label :password_confirmation %><br />
-            <p class="message"><%= f.password_field :password_confirmation, autocomplete: "new-password" %></p>
-            <p class="message"><%= f.submit "Sign up" %> </p>
-     </div>
- </div>
-<% end %>
+<div class="text-center mt-5">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "users/shared/error_messages", resource: resource %>
+        <div class="login-page">
+          <div class="form">
+              <h2 class="pb-3">Sign up</h2>
+                <%= f.label :name %><br>
+               <p class="message"> <%= f.text_field :name %></p>
+              <%= f.label :email %><br />
+             <p class="message"> <%= f.email_field :email, autofocus: true, autocomplete: "email" %></p>
+              <%= f.label :password %>
+              <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %><br />
+            <p class="message">  <%= f.password_field :password, autocomplete: "new-password" %></p>
+              <%= f.label :password_confirmation %><br />
+              <p class="message"><%= f.password_field :password_confirmation, autocomplete: "new-password" %></p>
+              <p class="message"><%= f.submit "Sign up" %> </p>
+       </div>
+   </div>
+  <% end %>
 
-<%= render "users/shared/links" %>
-
+    <%= render "users/shared/links" %>
+</div>

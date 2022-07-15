@@ -1,25 +1,40 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
-html{
-  font-size: 17px;
-}
 
-body {
-  margin: 0;
+body, html{
+  height: 100%;
   padding: 0;
-  position: relative;
+  margin: 0;
+  font-family: 'Sniglet', cursive;
+  font-size: 17px;
 }
 
 p,a,h1,h2,h3,h4,li {
    font-family: YuGothic,'Yu Gothic',YuGothic,'Yu Gothic',sans-serif;
 }
 
-// ここからヘッダー
-header {
-  width: 100%;
-  background: #ccdd33;
+h6{
+  font-size: 15px;
+  font-family: 'Raleway', sans-serif;
+  margin-left: 450px;
+  margin-top: 30px;
+  width: 500px;
+  color: #F90;
+  text-align: center;
 }
 
+// ここからヘッダー
+.navbar-brand-image{
+  padding-bottom: 15px;
+}
+
+header {
+  width: 100%;
+}
+
+.header-left{
+  padding-top: 30px;
+}
 .heder-top{
   margin-left: 400px;
   align-items: center;
@@ -41,6 +56,14 @@ footer {
   object-fit: cover;
 }
 
+.top-form-text{
+  width: 300px;
+  height: -webkit-fill-available;
+  border-radius: 20px;
+  padding: 10px;
+  color: #676767;
+  border: solid 3px #98d4f3;
+}s
 .top-wrap{
   flex-wrap: wrap;
 }
@@ -64,6 +87,9 @@ footer {
 // topページもサイドバーレイアウト
 .top-border{
   border-top: 1px solid #e1e1e1;
+}
+.top-border-time{
+ margin-left: 200px;
 }
 .search-top{
   background-color: cornflowerblue;
@@ -89,4 +115,158 @@ footer {
 .search-mini-box{
   padding: 24px 20px;
   border-bottom: solid;
+}
+
+
+// こちらのサイトを参考にした→https://qiita.com/rio_threehouse/items/313824b90a31268b0074
+// ページネーション
+.paginate{
+    margin-left: 550px;
+}
+
+/*ページネーション自体のデザイン*/
+.pagination>li>a {
+  border: none;     /*枠線をなくす*/
+  color: #696969;   /*文字の色を変える*/
+}
+
+/* 表示しているページ番号のデザイン */
+.pagination>.active>a {
+  background: #93c9ff;     /*背景の色を変える*/
+  border-radius: 15px;     /*角を丸くする*/
+}
+
+/*ホバー時のデザイン*/
+.pagination>li>a:hover {
+  border-radius: 15px;    /*角を丸くする*/
+}
+
+
+// ここから投稿作成ページ
+
+
+input, textarea{
+  width: 500px;
+  border-radius: 20px;
+  padding: 10px;
+  color: #676767;
+  border: solid 3px #98d4f3;
+}
+
+input[type="submit"]{
+  background-color: #F90;
+  color: white;
+  height: 50px;
+  margin-bottom: 30px;
+  font-size: 1.29em;
+}
+.input-image{
+  margin-left: 500px;
+}
+.input-image-center{
+  padding-left: 90px;
+}
+
+.new-background-image{
+   height: 100vh;
+   width: 100%;
+   position: relative;
+}
+
+.new-background-text{
+  top: 300px;
+}
+
+
+// ここからプロフィール
+.profile-title{
+  background: #88abda;
+  color: #fff;
+  padding: 0.3em 0.8em;
+  font-size: 1.1em;
+}
+.profile-image-field{
+  margin-left: 500px;
+}
+
+
+// ここから投稿一覧ページ
+
+table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  padding: 0;
+  width: 650px;
+  table-layout: fixed;
+}
+
+table tr {
+  background-color: #fff;
+  border: 1px solid #bbb;
+  padding: .35em;
+}
+table th,
+table td {
+  padding: 1em 10px 1em 1em;
+  border-right: 1px solid #bbb;
+}
+table th {
+  font-size: .85em;
+}
+table thead tr{
+  background-color: #eee;
+}
+.txt{
+   text-align: left;
+   font-size: .85em;
+}
+.price{
+   text-align: right;
+}
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+    width:100%
+  }
+  table th{
+    background-color: #eee;
+    display: block;
+    border-right: none;
+  }
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  table tr {
+    display: block;
+    margin-bottom: .625em;
+  }
+
+  table td {
+    border-bottom: 1px solid #bbb;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+    position: relative;
+    padding: .625em .625em .625em 4em;
+    border-right: none;
+  }
+
+  table td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    position: absolute;
+    left: 10px;
+  }
+
+  table td:last-child {
+    border-bottom: 0;
+  }
 }
