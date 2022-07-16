@@ -5,6 +5,7 @@ class Public::PostsController < ApplicationController
   end
 
   def edit
+    @categories = Category.all
   end
 
   def show
@@ -17,6 +18,7 @@ class Public::PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @categories = Category.all
   end
 
   def log
@@ -30,7 +32,7 @@ class Public::PostsController < ApplicationController
       redirect_to public_posts_path
    else
      render :new
-    end
+   end
  end
 
   def destroy
@@ -42,7 +44,7 @@ class Public::PostsController < ApplicationController
  private
 
  def post_params
-   params.require(:post).permit(:title, :body, :illust, :prevention, images: [])
+   params.require(:post).permit(:title, :body, :illust, :prevention,:category_id, images: [])
  end
 
 end

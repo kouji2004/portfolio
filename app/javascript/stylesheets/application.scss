@@ -143,7 +143,7 @@ footer {
 
 
 // ここから投稿作成ページ
-
+// 参考にしたサイトhttps→　pecopla.net/web-column/table-design
 
 input, textarea{
   width: 500px;
@@ -196,7 +196,7 @@ table {
   border-collapse: collapse;
   margin: 0 auto;
   padding: 0;
-  width: 650px;
+  width: 100%;
   table-layout: fixed;
 }
 
@@ -219,9 +219,6 @@ table thead tr{
 .txt{
    text-align: left;
    font-size: .85em;
-}
-.price{
-   text-align: right;
 }
 @media screen and (max-width: 600px) {
   table {

@@ -13,6 +13,11 @@ Rails.application.routes.draw do
 
 root to: "homes#top"
 
+   namespace :admins do
+      resources :categories,except: [:new]
+  end
+
+
    namespace :public, only:[:new, :index, :show, :edit, :create, :destroy] do
      resources :posts do
        collection do
@@ -22,12 +27,14 @@ root to: "homes#top"
           resources :comments, only:[:create, :destroy]
       end
 
+
        resource :profile, only:[:index,:show, :edit, :update, :create] do
            member do
              get :favorites
            end
        end
-   end
+      end
+
 # ゲストログイン機能
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'

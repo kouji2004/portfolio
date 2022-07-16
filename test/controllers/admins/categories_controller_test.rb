@@ -1,6 +1,6 @@
 require "test_helper"
 
-class PostTagTest < ActiveSupport::TestCase
+class Admins::CategoriesControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
