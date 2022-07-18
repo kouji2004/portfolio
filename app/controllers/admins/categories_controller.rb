@@ -1,6 +1,10 @@
 class Admins::CategoriesController < ApplicationController
 before_action :authenticate_admin!
 
+# レイアウトメソッド
+ layout 'dashboard/dashboard'
+
+
 def index
     @categories = Category.all
     @category = Category.new

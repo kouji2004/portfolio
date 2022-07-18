@@ -16,6 +16,9 @@ root to: "homes#top"
 
    namespace :admins do
       resources :categories,except: [:new]
+      # 管理者でのユーザー退会機能
+      resources :users, only: [:index, :edit, :update]
+
   end
 
 

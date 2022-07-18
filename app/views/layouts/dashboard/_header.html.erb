@@ -1,0 +1,37 @@
+<div class="d-flex" class="header-color" style="background: linear-gradient(to left, #32d285, #1f23);color: #94c0dc;">
+  <div>
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#"><%= image_tag "logo.png", size:"100x100", class:"navbar-brand-image" %></a>
+        <div class="container-fluid header-left">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <% if admin_signed_in? %>
+                <li class="nav-item ml-3">
+                 <%= link_to "ホームページ", root_path, class: 'nav-link text-dark ' %>
+                </li>
+                 <li class="nav-item ml-3">
+                  <%= link_to '投稿一覧', public_posts_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item ml-3">
+                  <%= link_to 'カテゴリー一覧', admins_categories_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item ml-3">
+                  <%= link_to 'ユーザー一覧', admins_users_path, class: 'nav-link text-dark' %>
+                </li>
+              <% else %>
+                 <li class="nav-item ml-3 mr-5">
+                <%= link_to "ログイン", new_admin_session_path, class: 'nav-link text-dark' %>
+                </li>
+              <% end %>
+            </ul>
+             </div>
+          </div>
+       </div>
+            <div class="d-flex heder-top">
+                   <a><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %></a>
+            </div>
+      </nav>
+  </div>
