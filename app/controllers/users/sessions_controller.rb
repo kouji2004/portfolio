@@ -1,12 +1,29 @@
-# frozen_string_literal: true
-
 class Users::SessionsController < Devise::SessionsController
+# before_action :user_state
+
+
 
   def guest_sign_in
     user = User.guest
     sign_in user
     redirect_to root_path, notice: 'guestuserでログインしました。'
   end
+
+
+
+# # # 退会機能
+# protected
+# # 退会しているかを判断するメソッド
+# def user_state
+#   @user = User.find_by(email: params[:user][:email])
+#   return if !@user
+#   if @user.valid_password?(params[:user][:password]) &&  (@user.active_for_authentication? == true)
+#     redirect_to root_path
+#   end
+# end
+
+
+
 
   # before_action :configure_sign_in_params, only: [:create]
 

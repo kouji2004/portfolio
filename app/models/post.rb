@@ -23,6 +23,8 @@ class Post < ApplicationRecord
                     # 複数の写真で使う
                        has_many_attached :images
 
+                      # 検索タグ
+                           scope :on_category, ->(category){where(category_id: category)}
                           def get_image
                             unless image.attached?
                               file_path = Rails.root.join('app/assets/images/no_image.jpg')
@@ -36,7 +38,7 @@ class Post < ApplicationRecord
                             favorites.exists?(user_id: self.user.id)
                           end
 
-                              # 検索方法分岐
+                              # 検索方法分岐 検索タグ　時に使用
                                 def self.looks(search, word)
                                   if search == "perfect_match"
                                     @post = Post.where("title LIKE?","#{word}")
@@ -50,5 +52,14 @@ class Post < ApplicationRecord
                                     @post = Post.all
                                   end
                                 end
+
+
+                        def get_image
+                          unless images.attached?
+                            file_path = Rails.root.join('app/assets/images/no_image.jpg')
+                            image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+                          end
+                          images
+                        end
 
 end

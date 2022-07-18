@@ -1,10 +1,18 @@
 class Public::PostsController < ApplicationController
 
   def index
-    @posts = Post.all
+    # 検索タグ
+    if params[:category].present?
+      @category = Category.request_category(params[:category])
+      @posts = Post.on_category(@category)
+    else
+      @posts = Post.all
+    end
+    @categories = Category.all
   end
 
   def edit
+    # 検索タグ
     @categories = Category.all
   end
 
@@ -18,6 +26,7 @@ class Public::PostsController < ApplicationController
 
   def new
     @post = Post.new
+    # 検索タグ
     @categories = Category.all
   end
 
@@ -44,7 +53,7 @@ class Public::PostsController < ApplicationController
  private
 
  def post_params
-   params.require(:post).permit(:title, :body, :illust, :prevention,:category_id, images: [])
+   params.require(:post).permit(:title, :body, :illust, :prevention,:category_id, :images, images: [])
  end
 
 end

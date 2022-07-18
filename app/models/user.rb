@@ -60,4 +60,14 @@ class User < ApplicationRecord
                                                             @user = User.all
                                                           end
                                                         end
+
+                                # 退会機能
+                                def active_for_authentication?
+                                  super && (is_delete == false)
+                                end
+
+                              # インスタンスメソッド管理者側で使うもの
+                                def switch_flg(obj)
+                                  obj ? false : true
+                                end
 end

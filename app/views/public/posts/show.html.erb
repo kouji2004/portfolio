@@ -3,22 +3,24 @@
     <div class="col-md-9">
       <h2><%=@user.name%>さんの詳細ページ</h2>
       <div class=" row pt-3">
-        <% @posts.each do |post| %>
+        <!--<#% @posts.each do |post| %>-->
           <div class="col-md-6 pt-3 mb-5 top-border">
-            <% post.images.each do |image| %>
-              <%= image_tag(image, width:400, height:300)  %>
-            <% end %>
+            <!--<#% post.images.each do |image| %>-->
+            <!--  <#%= image_tag(image, width:400, height:300)  %>-->
+            <!--<#% end %>-->
+            <%= image_tag @post.get_image[0],size: '320x240' %>
           </div>
+
 
           <div class="col-md-6 mb5 top-border">
             <h5 class="mt-5">どこで転ばれましたか？</h5>
-            <p class="pb-5"><%= post.title %></p>
+            <p class="pb-5"><%= @post.title %></p>
             <h5>状況</h5>
-            <p><%= post.body %></p>
-            <p><%= link_to post.user.name, public_profile_path,class:"pt-5" %>さんのプロフィールへ</p>
+            <p><%= @post.body %></p>
+            <p><%= link_to @post.user.name, public_profile_path,class:"pt-5" %>さんのプロフィールへ</p>
 
           </div>
-        <%end%>
+        <!--<#%end%>-->
       </div>
     </div>
 

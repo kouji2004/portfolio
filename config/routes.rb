@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   #管理者用
     devise_for :admins, controllers: {
       sessions: "admins/sessions"
@@ -19,6 +20,13 @@ root to: "homes#top"
 
 
    namespace :public, only:[:new, :index, :show, :edit, :create, :destroy] do
+    # 退会機能
+      resource :users, only:[:show] do
+      patch "withdrawal" => "users#withdrawal"
+       member do
+      get "favorites"
+      end
+    end
      resources :posts do
        collection do
             get "log" => "posts#log"
@@ -40,5 +48,13 @@ root to: "homes#top"
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
   end
   get "search" => "searches#search"
+
+
+# # 退会機能
+#   namespace :users do
+#     get 'accounts/:id/unsubscribe' => 'accounts#unsubscribe', as: 'unsubscribe'
+#     patch 'accounts/:id/withdrawal' => 'accounts#update', as: 'withdrawal'
+#   end
+
 
 end
