@@ -1,12 +1,3 @@
-<div class="container">
-    <%= link_to "一覧",public_posts_path ,class: "btn btn-secondary "%>
-    <%@categories.each do |category|%>
-      <div class="btn btn-secondary" style="color: #fff;">
-        <%= link_to category.name,public_posts_path(category: category.id) %>
-      </div>
-  <% end%>
-</div>
-
 <table class="mt-5 mb-5">
         <thead>
             <tr>
@@ -28,8 +19,8 @@
                     </th>
                     <td><%= link_to post.category.name,public_posts_path(category: post.category.id) %></td>
                   <td class="txt"><%=link_to post.title, public_post_path(post) %></td>
-                  <td class="price"><%= post.body %></td>
-                  <td class="price"><%= post.prevention %></td>
+                  <td class="price post-index-wrap"><%= post.body %></td>
+                  <td class="price post-index-wrap"><%= post.prevention %></td>
               </tr>
             <% end %>
         </tbody>

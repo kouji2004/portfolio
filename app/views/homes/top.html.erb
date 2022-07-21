@@ -36,6 +36,17 @@
        <% end %>
     <% end %>
 
+    <p class="search-bottom mt-3">カテゴリー検索</p>
+       <div class="search-box text-center">
+            <%@categories.each do |category|%>
+              <div class="btn btn-secondary" style="color: #fff;line-height: 5px; margin: 5px;"><br>
+                <%= link_to category.name,public_posts_path(category: category.id), style:"color: #fff;" %>
+              </div>
+          <% end%>
+      </div>
+
+
+
        <p class="search-bottom mt-3">投稿したユーザー</p>
        <div class="search-box">
         <% @posts.each do |post| %>

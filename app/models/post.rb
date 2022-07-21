@@ -7,10 +7,6 @@ class Post < ApplicationRecord
   validates :body,length: { maximum: 100 }
   validates :prevention,length: { maximum: 100 }
 
-  # 検索タグ
-  has_many :post_tags, dependent: :destroy
-  has_many :tags, through: :post_tags
-
   validates :images, presence: true
 
     has_many :comments, dependent: :destroy

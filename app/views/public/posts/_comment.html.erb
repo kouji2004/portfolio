@@ -1,0 +1,18 @@
+        <% post.comments.each do |comment| %>
+        <div class="d-flex">
+          <div>
+          <p><%= image_tag current_user.profile_image,size:"50x50" %>
+          </div>
+          <div>
+          <p class="mt-2"><%= comment.user.name %></p>
+          <p><%= comment.comment %> </p>
+           <p><%= comment.created_at.strftime('%Y/%m/%d') %>
+
+            <!--コメントした人だけが削除できる-->
+            <% if comment.user == current_user %>
+              <%= link_to "削除", public_post_comment_path(comment.post, comment), method: :delete %>
+             <% end %>
+          <% end %>
+          </p>
+           </div>
+        </div>

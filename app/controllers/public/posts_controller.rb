@@ -1,6 +1,7 @@
 class Public::PostsController < ApplicationController
 
   def index
+    @posts=Post.all
     # 検索タグ
     if params[:category].present?
       @category = Category.request_category(params[:category])
