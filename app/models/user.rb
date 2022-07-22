@@ -13,7 +13,7 @@ class User < ApplicationRecord
 
             # 投稿いいね一覧
                     has_many :favorite_posts, through: :favorites, source: :post
-
+                # プロフィール
                     has_one :profile
 
                    # ボッチ演算子 &.

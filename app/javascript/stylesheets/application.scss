@@ -42,11 +42,10 @@ header {
 
 // ここからfooter
 footer {
-  // position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
   background: #44aa33;
+  position: sticky;
+  top: 100vh;
+  width: 100%;
 }
 
 // ここからtopページ
@@ -287,4 +286,9 @@ table thead tr{
 }
 .comment-submit{
   margin-last: 200px;
+}
+
+// 投稿に対してのいいね一覧
+.favorite-box{
+  margin-bottom: 25%;
 }

@@ -61,7 +61,6 @@
         <div class="d-flex" style="text-align: center;margin-left: 60px;">
           <p><a href="./links.html"><%=link_to"お気に入り/", favorites_public_profile_path(@user) %></a></p>
 
-            <!--!=右と左が等しくない時は編集ボタンを表示させない-->
             <% if @user.name != "guestuser" %>
             <p class="ml-1"><%= link_to "編集", edit_public_profile_path, class:"text text-center" %></p>
             <% end %>

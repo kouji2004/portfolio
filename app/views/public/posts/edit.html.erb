@@ -1,12 +1,12 @@
 <div class="text-center">
-    <%= form_with model: @post, url: public_posts_path do |f| %>
+    <%= form_with model: @post, url: public_post_path, method: :patch do |f| %>
     <h6>どこで転びましたか？</h6>
     <p><%= f.text_field :title ,class:"posts-new-text",placeholder: "7文字以内",:size => "50*50", class:"text-title" %></p>
     <h6>転倒時の状況</h6>
-    <p><%= f.text_area :body,placeholder: "100文字以内",:size => "50*50", class:"text-body" %></p>
+    <p><%= f.text_area :body,placeholder: "50文字以内",:size => "50*50", class:"text-body" %></p>
 
     <h6>転ばない為に何が必要ですか</h6>
-    <p> <%= f.text_area :prevention,placeholder: "100文字以内",:size => "50*50", class:"text-prevention" %></p>
+    <p> <%= f.text_area :prevention,placeholder: "50文字以内",:size => "50*50", class:"text-prevention" %></p>
     <h6>日常で危険だと思う場所をイラストで教えてください</h6>
     <p class="input-image"><%= f.file_field :images, multiple: true, class:"input-image-center" %></p>
     <div class="form-inline mt-4 mb-4 row">

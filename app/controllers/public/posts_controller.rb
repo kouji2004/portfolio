@@ -14,6 +14,7 @@ class Public::PostsController < ApplicationController
 
   def edit
     # 検索タグ
+    @post = Post.find(params[:id])
     @categories = Category.all
   end
 
@@ -48,6 +49,12 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
+    redirect_to public_posts_path
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    @post.update(post_params)
     redirect_to public_posts_path
   end
 

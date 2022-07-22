@@ -17,8 +17,12 @@
             <p class="mt-2"  style="text-align: -webkit-center;"><%= @post.body %></p>
 
             <h5 class=" text-center mt-3" style="color: orange;">対策:</h5>
-                 <p class="mt-2"  style="text-align: -webkit-center;"><%= @post.prevention %></p>
-             <p><%= link_to @post.user.name, public_profile_path,class:"pt-5" %>さんのプロフィールへ</p>
+
+             <p class="mt-2"  style="text-align: -webkit-center;"><%= @post.prevention %></p>
+              <%=link_to public_account_path(@post.user) do%>
+              <p><%= @post.user.name %>さんのプロフィールへ</p>
+             <%end%>
+
             <div class="text-center">
             <!--いいね機能-->
            <div class="favorite-btn mb-2"><%= render "public/posts/show", post: @post %></div>

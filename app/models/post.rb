@@ -4,8 +4,8 @@ class Post < ApplicationRecord
 
 # バリデーション機能
   validates :title,length: { maximum: 7 }
-  validates :body,length: { maximum: 100 }
-  validates :prevention,length: { maximum: 100 }
+  validates :body,length: { maximum: 150 }
+  validates :prevention,length: { maximum: 150 }
 
   validates :images, presence: true
 
@@ -31,22 +31,22 @@ class Post < ApplicationRecord
 
                           #ユーザidがFavoritesテーブル内に存在（exists?）するかどうかを調べる
                           def favorited_by?(user)
-                            favorites.exists?(user_id: self.user.id)
+                            favorites.exists?(user_id: user.id)
                           end
 
                               # 検索方法分岐 検索タグ　時に使用
                                 def self.looks(search, word)
-                                  if search == "perfect_match"
-                                    @post = Post.where("title LIKE?","#{word}")
-                                  elsif search == "forward_match"
-                                    @post = Post.where("title LIKE?","#{word}%")
-                                  elsif search == "backward_match"
-                                    @post = Post.where("title LIKE?","%#{word}")
-                                  elsif search == "partial_match"
+                                  # if search == "perfect_match"
+                                  #   @post = Post.where("title LIKE?","#{word}")
+                                  # elsif search == "forward_match"
+                                  #   @post = Post.where("title LIKE?","#{word}%")
+                                  # elsif search == "backward_match"
+                                  #   @post = Post.where("title LIKE?","%#{word}")
+                                  # elsif search == "partial_match"
                                     @post = Post.where("title LIKE?","%#{word}%")
-                                  else
-                                    @post = Post.all
-                                  end
+                                  # else
+                                  #   @post = Post.all
+                                  # end
                                 end
 
 
