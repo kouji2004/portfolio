@@ -46,7 +46,7 @@
       </div>
 
        <p class="search-bottom mt-3">投稿したユーザー</p>
-       <div class="search-box">
+       <div class="search-box-bottom">
         <% @users.each do |user| %>
          <p class="search-mini-box"> <%= image_tag user.profile_image,size:"50x50" %><%= user.name %></p><br>
         <%end%>

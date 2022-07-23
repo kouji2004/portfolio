@@ -9,7 +9,7 @@
     <p> <%= f.text_area :prevention,placeholder: "50文字以内",:size => "50*50", class:"text-prevention" %></p>
     <h6>日常で危険だと思う場所をイラストで教えてください</h6>
     <p class="input-image"><%= f.file_field :images, multiple: true, class:"input-image-center" %></p>
-    <div class="form-inline mt-4 mb-4 row">
+    <div class="form-inline mt-4 mb-4 row" style="margin-left: 600px;">
       <%= f.label "カテゴリ", class: "col-2 d-flex justify-content-start" %>
       <%= f.collection_select(:category_id, @categories, :id, :name) %>
     </div>

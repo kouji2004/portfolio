@@ -95,10 +95,17 @@ footer {
   padding: 24px 20px;
   border: 1px solid #000;
   margin-bottom: 10px;
+  display: grid;
+}
+
+.search-box-bottom{
+  padding: 20px 10px 0px 20px;
+  border: 1px solid #000;
+  margin-bottom: 10px;
 }
 .search-mini-box{
-  padding: 24px 20px;
-  border-bottom: solid;
+  padding: 10px 10px;
+  border-bottom: solid mediumspringgreen;
 }
 
 
