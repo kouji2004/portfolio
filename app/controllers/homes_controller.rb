@@ -6,6 +6,7 @@ class HomesController < ApplicationController
     # 投稿したユーザーが重複したら削除する
     user_ids = Post.pluck(:user_id).uniq
     @users = User.where(id: user_ids)
+    @users = User.page(params[:page]).per(4)
   end
 
 # ((a),(b)(b)).pluck → (a,b,b).uniq→(a,b)
