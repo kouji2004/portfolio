@@ -1,12 +1,6 @@
 <div class="text-center favorite-box">
   <h1 class="text-center mt-5 mb-5">いいね一覧</h1>
-
-
-<% @favorite_posts.each do |post| %>
-<%= post.title %>
-<%end%>
-
-<% @favorite_users.each do |user| %>
-<%= link_to user.name, public_post_path(user) %><br>
-<%end%>
+  <% @favorite_users.each do |user| %>
+    <%= link_to user.name, public_post_path(user) %><br>
+  <%end%>
 </div>

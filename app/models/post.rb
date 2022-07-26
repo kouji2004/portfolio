@@ -6,8 +6,9 @@ class Post < ApplicationRecord
   validates :title,length: { maximum: 7 }
   validates :body,length: { maximum: 150 }
   validates :prevention,length: { maximum: 150 }
-
   validates :images, presence: true
+
+
 
     has_many :comments, dependent: :destroy
       # いいね機能

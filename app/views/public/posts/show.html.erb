@@ -3,117 +3,79 @@
     <div class="col-md-7 text-center">
       <h2><%=@user.name%>さんの詳細ページ</h2>
       <div class="  pt-3 profile-box text-center">
-          <div class="pt-3 mb-5 top-border text-center", style:"text-align: center;">
+        <div class="pt-3 mb-5 top-border text-center", style:"text-align: center;">
           <h5 class="mt-3  text-center"style="color: orange;">どこで転ばれましたか？</h5>
           <h4 class="text-center"><%= @post.title %></h4>
-            <%= image_tag @post.get_image[0],size: '320x240' %>
+          <%= image_tag @post.get_image[0],size: '320x240' %>
 
-          <!--</div>-->
+          <h5 class=" text-center mt-3 mb-3"style="color: orange;">状況:</h5>
+          <p class="mt-2"  style="text-align: -webkit-center;"><%= @post.body %></p>
 
-          <!--<div class="col-md-6 mb5 top-border pb-3">-->
+          <h5 class=" text-center mt-3" style="color: orange;">対策:</h5>
 
+          <p class="mt-2"  style="text-align: -webkit-center;"><%= @post.prevention %></p>
+          <%=link_to public_account_path(@post.user) do%>
+            <p><%= @post.user.name %>さんのプロフィールへ</p>
+          <%end%>
 
-            <h5 class=" text-center mt-3 mb-3"style="color: orange;">状況:</h5>
-            <p class="mt-2"  style="text-align: -webkit-center;"><%= @post.body %></p>
-
-            <h5 class=" text-center mt-3" style="color: orange;">対策:</h5>
-
-             <p class="mt-2"  style="text-align: -webkit-center;"><%= @post.prevention %></p>
-              <%=link_to public_account_path(@post.user) do%>
-              <p><%= @post.user.name %>さんのプロフィールへ</p>
-             <%end%>
-
-            <div class="text-center">
-            <!--いいね機能-->
-           <div class="favorite-btn mb-2"><%= render "public/posts/show", post: @post %></div>
-            </div>
-            <!--<p class="top-border-time">投稿日時：<#%= post.created_at.strftime('%Y/%m/%d') %></p>-->
-        <% if @post.user == current_user %>
+          <div class="text-center">
+          <!--いいね機能-->
+            <div class="favorite-btn mb-2"><%= render "public/posts/show", post: @post %></div>
+          </div>
+          <!--<p class="top-border-time">投稿日時：<#%= post.created_at.strftime('%Y/%m/%d') %></p>-->
+          <% if @post.user == current_user || admin_signed_in? %>
             <%= link_to "削除", public_post_path(@post), method: :delete ,"data-confirm" => "本当に削除しますか？" %>
             <%= link_to "編集", edit_public_post_path(@post) %>
           <% end %>
-
-          </div>
-        <!--<#%end%>-->
+        </div>
       </div>
     </div>
 
-
-<!--ここから右サイドバー-->
+    <!--ここから右サイドバー-->
     <div class="col-md-3 text-center profile-side">
-      <div class="card">
-      <h2 class="profile-title">Profile</h2>
+      <div class="card"style="width: 250px;">
+      <h2 class="profile-title">投稿したユーザー</h2>
       <figure class="profile-image">
-        <%= image_tag current_user.profile_image,size:"50x50" %>
+        <%= image_tag @user.profile_image,size:"50x50" %>
       </figure>
-        <%if current_user.name %>
-          <p><%= @user.name %></p>
+        <p><%= @user.name %></p>
+
+      <!--<#%if @profile.gender.nil? %>-->
+      <!--  <p><#%= @user.gender %></p>-->
+      <!--<#% else%>-->
+      <!--  <p>性別</p>-->
+      <!--<#% end %>-->
+
+      <h5>自己紹介</h5>
+        <%if @profile&.mainbody? %>
+          <p><%= @profile&.mainbody %></p>
         <% else%>
-          <h2>ゲストユーザー</p>
+          <p style="width: 250px;">お役に立つ情報を発信していきます。よろしくお願いします</p>
         <% end %>
 
-        <!--<#%if @profile.gender.nil? %>-->
-        <!--  <p><#%= @user.gender %></p>-->
-        <!--<#% else%>-->
-        <!--  <p>性別</p>-->
-        <!--<#% end %>-->
-
-           <h5>自己紹介</h5>
-            <%if @profile&.mainbody%>
-               <p><%= @profile&.mainbody %></p>
-            <% else%>
-               <p style="width: 250px;">お役に立つ情報を発信していきます。よろしくお願いします</p>
-            <% end %>
-
-
-          <h5>一言</h5>
-            <%if @profile&.subbody %>
-              <p ><%= @profile&.subbody %></p>
-            <% else%>
-              <p>よろしくお願いします</p>
-            <% end %>
+      <h5>一言</h5>
+      <%if @profile&.subbody? %>
+        <p ><%= @profile&.subbody %></p>
+      <% else%>
+        <p>よろしくお願いします</p>
+      <% end %>
+      </div>
     </div>
   </div>
+
+  <!--コメント表示-->
+  <h3 class="ml-5 text-center" style="border: solid 10px;">助言やアドバイスがあれば教えてください</h3>
+  <div class="talk mb-5 mt-3"style="width: 1000px;">
+    <div id="post_<%= @post.id %>">
+      <div class="comment"> <%= render 'public/posts/comment', post: @post %></div>
+    </div>
   </div>
 
-         <!--コメント表示-->
-
-         <h3 class="ml-5">助言やアドバイスがあれば教えてください</h3>
-        <% @post.comments.each do |comment| %>
-         <table class="border-none">
-        <div class="d-flex">
-          <div>
-          <p><%= image_tag current_user.profile_image,size:"50x50" %>
-          </div>
-          <div>
-          <p class="mt-2"><%= comment.user.name %></p>
-          <p><%= comment.comment %> </p>
-           <p><%= comment.created_at.strftime('%Y/%m/%d') %>
-
-            <!--コメントした人だけが削除できる-->
-            <% if comment.user == current_user %>
-             <%= link_to "削除", public_post_comment_path(comment.post, comment), method: :delete %>
-             <% end %>
-          </table>
-          <% end %>
-
-          </p>
-           </div>
-        </div>
-
-
-
-              <!--コメント投稿-->
-        <div class="comment-box">
-        <%= form_with model: [@post, @comment], url: public_post_comments_path(@post) do |f| %>
-          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに"  %>
-          <p class="mt-3" style="margin-right: 200px;"><%= f.submit "送信する" %></p>
-        <% end %>
-        </div>
-
-
+  <!--コメント投稿-->
+  <div class="comment-box">
+    <%= form_with model: [@post, @comment], url: public_post_comments_path(@post),local: false do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "50文字以内でコメントをお願いします"  %>
+      <p class="mt-3" style="margin-right: 200px;"><%= f.submit "送信する" %></p>
+    <% end %>
+  </div>
 </div>
-
-
-
-

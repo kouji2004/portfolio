@@ -1,57 +1,66 @@
-   <%= image_tag "jaddy.jpg", class:"top-image" %>
+<%= image_tag "jaddy.jpg", class:"top-image",style:"margin-bottom: 30px" %>
 
-<div class="container mt-5">
- <div class="row">
+<div class="container">
+  <div class="row">
    <div class="col-md-9">
-       <h2>皆で情報を共有して転倒を減らそう！</h2>
+     <h2 style="text-align: center;">皆で情報を共有して転倒を減らそう！</h2>
      <div class=" row pt-3">
-       <% @posts.each do |post| %>
-        <div class="col-md-6 pt-3 mb-5 top-border">
-          <% post.images.each do |image| %>
-           <%= image_tag(image, width:400, height:300)  %>
-          <% end %>
-        </div>
+      <% @posts.each do |post| %>
+       <div class="col-md-6 pt-3 mb-5 top-solid">
+        <% post.images.each do |image| %>
+         <%= image_tag(image, width:400, height:300)  %>
+        <% end %>
+       </div>
 
-        <div class="col-md-6 mb5 top-border">
-         <h5 class="mt-5">どこで転ばれましたか？</h5>
-          <p class="pb-5"><%= post.title %></p>
-          <h5>状況</h5>
-          <p><%= post.body %></p>
-          <%= link_to "詳細", public_post_path(post.id),class:"pt-5" %>
-          <p class="top-border-time">投稿日時：<%= post.created_at.strftime('%Y/%m/%d') %></p>
-        </div>
-         <%end%>
+       <div class="col-md-6 mb5 top-solid text-center">
+        <h5 class="mt-5">どこで転ばれましたか？</h5>
+        <%if user_signed_in?%>
+        <h4 class="pb-3 pt-2"><%=link_to post.title, public_post_path(post.id)%></h4>
+        <%else%>
+           <h4 class="pb-3 pt-2"><%=post.title%></h4>
+        <%end%>
+        <h5 class="mt-5">状況</h5>
+        <p class="mb-5 price post-index-wrap"><%= post.body %></p>
+        <p class="top-border-time">投稿日時：<%= post.created_at.strftime('%Y/%m/%d') %></p>
+       </div>
+      <%end%>
      </div>
-    <!--</div>-->
    </div>
 
-  <div class="col-md-3">
-    <p class="search-top mb-5">検索</p>
-    <% if user_signed_in? %>
-       <%= form_with url: search_path, local: true, method: :get, class:"d-flex" do |f| %>
-        <%= f.text_field :word, placeholder: "キーワードを入力",class:"top-form-text" %>
-        <!--<#%= f.select :range, options_for_select([['User'], ['Post']]) %>-->
-       <!--<#%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"], ["部分一致","partial_match"]]) %>-->
-        <%= f.submit "検索"  %>
-       <% end %>
-    <% end %>
+   <div class="col-md-3">
+     <p class="search-top mb-5">検索</p>
+     <!--虫眼鏡検索フォーム-->
+     <% if user_signed_in? %>
+      <%= form_with url: search_path, local: true, method: :get, class:"d-flex" do |f| %>
+       <div class="search royalblue">
+        <%= f.text_field :word, placeholder: "キーワードを入力",class:"search-foam", style: "width: 180px;" %>
+        <button type="submit"><i class="fa fa-search"></i></button>
+       </div>
+      <% end %>
+     <% end %>
 
-    <p class="search-bottom mt-3">カテゴリー検索</p>
-       <div class="search-box text-center">
-            <%@categories.each do |category|%>
-              <div class="btn btn-secondary" style="color: #fff;line-height: 5px; margin: 5px;"><br>
-                <%= link_to category.name,public_posts_path(category: category.id), style:"color: #fff;" %>
-              </div>
-          <% end%>
-      </div>
+     <p class="search-bottom mt-3">カテゴリー検索</p>
+     <div class="search-box text-center">
+      <%@categories.each do |category|%>
+       <div class="btn btn-secondary" style="color: #fff;line-height: 5px; margin: 5px;"><br>
+        <%= link_to category.name,public_posts_path(category: category.id), style:"color: #fff;" %>
+       </div>
+      <% end%>
+     </div>
 
-       <p class="search-bottom mt-3">投稿したユーザー</p>
-       <div class="search-box-bottom">
-        <% @users.each do |user| %>
+     <p class="search-bottom mt-3">最近投稿したユーザー</p>
+     <div class="search-box-bottom">
+
+      <% @users.each do |user| %>
+       <%if user_signed_in? %>
+        <p class="search-mini-box"> <%= image_tag user.profile_image,size:"50x50" %><%=link_to user.name,public_account_path(user) %></p><br>
+       <%else%>
          <p class="search-mini-box"> <%= image_tag user.profile_image,size:"50x50" %><%= user.name %></p><br>
-        <%end%>
-      </div>
-  </div>
+       <%end%>
+      <%end%>
+     </div>
+   </div>
+  <div class="paginate"><%= paginate @posts %></div>
  </div>
+
 </div>
-<div class="paginate"><%= paginate @posts %></div>

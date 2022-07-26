@@ -11,22 +11,23 @@
         <th></th>
       </tr>
     </thead>
+
     <tbody>
-<% @users.each do |user| %>
-      <tr>
-        <th scope="row"><%= user.id %></th>
-        <td><%= user.name%></td>
-        <td><%= user.email %></td>
-        <td>
-          <% if user.is_delete %>
-            <span style="color:gray;">退会</span>
-          <% else %>
-            <span style="color:green;">有効</span>
-          <% end %>
-        </td>
+      <% @users.each do |user| %>
+        <tr>
+          <th scope="row"><%= user.id %></th>
+          <td><%= user.name%></td>
+          <td><%= user.email %></td>
+          <td>
+            <% if user.is_delete %>
+                <span style="color:gray;">退会</span>
+            <% else %>
+              <span style="color:green;">有効</span>
+            <% end %>
+          </td>
           <td><%= link_to '編集', edit_admins_user_path(user), class: "btn btn-secondary btn-sm "%></td>
-      </tr>
+        </tr>
       <% end %>
     </tbody>
   </table>
-
+</div>

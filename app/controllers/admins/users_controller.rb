@@ -1,6 +1,5 @@
 class Admins::UsersController < ApplicationController
   before_action :authenticate_admin!
-
   # レイアウトメソッド
    layout 'dashboard/dashboard'
 

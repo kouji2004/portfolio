@@ -1,7 +1,7 @@
 class Public::PostsController < ApplicationController
-
+  # before_action :authenticate_user!
   def index
-    @posts=Post.all
+    @posts=Post.page.all
     # 検索タグ
     if params[:category].present?
       @category = Category.request_category(params[:category])
@@ -23,7 +23,7 @@ class Public::PostsController < ApplicationController
     @comment = Comment.new
     @posts = Post.all
     @user = @post.user
-    @profile = current_user.profile
+    @profile = current_user&.profile
   end
 
   def new

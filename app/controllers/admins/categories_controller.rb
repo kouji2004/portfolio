@@ -1,5 +1,7 @@
 class Admins::CategoriesController < ApplicationController
 before_action :authenticate_admin!
+  # レイアウトメソッド
+   layout 'dashboard/dashboard'
 
 # レイアウトメソッド
  layout 'dashboard/dashboard'
@@ -8,6 +10,7 @@ before_action :authenticate_admin!
 def index
     @categories = Category.all
     @category = Category.new
+    @posts = Post.all.page(params[:page]).per(3)
 end
 
 def edit

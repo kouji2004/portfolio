@@ -4,22 +4,22 @@
   <!--検索対象モデルがUserの時 -->
   <% if @range == "User" %>
     <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td><%= user.name %></td>
-        </tr>
-      <% end %>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+      </tr>
+  <% end %>
     </tbody>
   <% else %>
-    <!--検索対象モデルがUserではない時(= 検索対象モデルがBookの時) -->
-       <tbody>
-      <% @posts.each do |post| %>
-        <tr>
-          <td><%=link_to post.title,public_post_path(post) %></td>
-          <td><%= post.body %></td>
-        </tr>
-      <% end %>
-    </tbody>
+  <!--検索対象モデルがUserではない時(= 検索対象モデルがBookの時) -->
+  <tbody>
+  <% @posts.each do |post| %>
+    <tr>
+      <td><%=link_to post.title,public_post_path(post) %></td>
+      <td><%= post.body %></td>
+    </tr>
+  <% end %>
+  </tbody>
   <% end %>
 </table>
 

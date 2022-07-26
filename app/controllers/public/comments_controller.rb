@@ -7,7 +7,7 @@ class Public::CommentsController < ApplicationController
     unless @comment.save
       render 'error'
     end
-      redirect_to request.referer
+      # redirect_to request.referer
   end
 
 
@@ -15,7 +15,7 @@ class Public::CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     comment = @post.comments.find(params[:id])
     comment.destroy
-    redirect_to request.referer
+    # redirect_to request.referer
   end
 
 

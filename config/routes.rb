@@ -29,7 +29,7 @@ root to: "homes#top"
       get "favorites"
       end
     end
-     resources :posts, only:[:index,:show, :edit,:new, :update, :create] do
+     resources :posts, only:[:index,:show, :edit,:new, :update, :create,:destroy] do
        collection do
             get "log" => "posts#log"
        end
@@ -42,7 +42,7 @@ root to: "homes#top"
              get :favorites
            end
        end
-      end
+    end
 
 # ゲストログイン機能
   devise_scope :user do

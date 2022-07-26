@@ -48,6 +48,12 @@ footer {
   width: 100%;
 }
 
+
+// 検索フォーム
+.search-foam{
+ width: 180px;
+}
+
 // ここからtopページ
 .top-image{
   width: 100%;
@@ -70,6 +76,9 @@ footer {
 
 // topページもサイドバーレイアウト
 .top-border{
+  border: 1px solid #e1e1e1;
+}
+.top-solid{
   border-top: 1px solid #e1e1e1;
 }
 .top-border-time{
@@ -177,6 +186,7 @@ input[type="submit"]{
   margin-left: 150px;
   margin-right: 30px;
 }
+
 // ここからプロフィール
 .profile-title{
   background: #88abda;
@@ -280,7 +290,6 @@ table thead tr{
 
 // ここから投稿詳細ページ
 .profile-box{
-  border-bottom: solid;
   margin-bottom: 30px;
 }
 .profile-comment-text{
@@ -299,3 +308,154 @@ table thead tr{
 .favorite-box{
   margin-bottom: 25%;
 }
+
+
+
+/* 全体の枠 */
+.talk {
+  background-color: aliceblue;
+	padding:1em;
+	overflow:auto;
+}
+/* 左のトークボックス */
+.talk .talk_left:before { /* 左の丸アイコン */
+	content:'';
+	display:inline-block;
+	width:50px;
+	height:50px;
+	vertical-align:top;
+	border-radius:50%;
+	background-size:cover;
+}
+.talk .talk_left p:before {  /* 左ふきだしの左三角を描画 */
+	content: '';
+	position:absolute;
+	top:8px;
+	left:-20px;
+	border: 12px solid transparent;
+	border-right:12px solid white;
+}
+.talk .talk_left p { /* 左ふきだしの本体 */
+	display:inline-block;
+	position:relative;
+	background-color:white;
+	border-radius:10px;
+	padding:10px;
+	margin:0 0 0 10px;
+}
+/* 右のトークボックス */
+.talk .talk_right:after { /* 右の丸アイコン */
+	content:'';
+	display:inline-block;
+	width:50px;
+	height:50px;
+	vertical-align:top;
+	border-radius:50%;
+	background-size:cover;
+	background-position:-10px;
+}
+.talk .talk_right {
+  text-align: end; /* 右のふきだしは全体的に右寄せ */
+	margin-top:1em;
+}
+.talk .talk_right p:after { /* 右ふきだしの右三角を描画 */
+	content: '';
+	position:absolute;
+	top:8px;
+	right:-20px;
+	border: 12px solid transparent;
+	border-left:12px solid #85e249;
+}
+.talk .talk_right p { /* 右ふきだしの本体 */
+	display:inline-block;
+	position:relative;
+	background-color:#85e249;
+	border-radius:10px;
+	padding:10px;
+	margin:0 10px 0 0;
+}
+
+
+
+
+// 検索機能
+body {}
+
+p {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.search {
+  display: flex;
+  width: 70%;
+  margin: 10px;
+}
+
+.search input[type=text] {
+  width: 100%;
+  font-size: 20px;
+  padding: 0 6px;
+  color: #474747;
+  border: 2px solid #474747;
+  border-radius: 3px 0 0 3px;
+  outline: none;
+}
+
+.search button[type=submit] {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #FFF;
+  background: #474747;
+  border: 2px solid #474747;
+  border-radius: 0 3px 3px 0;
+  cursor: pointer;
+}
+
+/* colors */
+.royalblue input[type=text] {
+  border-color: #4169e1;
+}
+
+.royalblue button[type=submit] {
+  border-color: #4169e1;
+  background: #4169e1;
+}
+
+
+.limegreen input[type=text] {
+  border-color: #32cd32;
+}
+
+.limegreen button[type=submit] {
+  border-color: #32cd32;
+  background: #32cd32;
+}
+
+.tomato input[type=text] {
+  border-color: #ff6347;
+}
+
+.tomato button[type=submit] {
+  border-color: #ff6347;
+  background: #ff6347;
+}
+
+
+
+// レスポンシブ対応
+// @media screen and (max-width: 959px) {
+// 	/* 959px以下に適用されるCSS（タブレット用） */
+// }
+// @media screen and (max-width: 480px) {
+// 	/* 480px以下に適用されるCSS（スマホ用） */
+
+// // 	ログインページ
+
+// }
