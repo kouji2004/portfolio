@@ -32,11 +32,7 @@
           <%= image_tag @user.profile_image,size:"50x50" %>
         </figure>
 
-        <%if current_user.name %>
           <p><%= @user.name %></p>
-        <% else%>
-          <h2>ゲストユーザー</p>
-        <% end %>
 
         <!--<#%if @profile.gender.nil? %>-->
         <!--  <p><#%= @user.gender %></p>-->
