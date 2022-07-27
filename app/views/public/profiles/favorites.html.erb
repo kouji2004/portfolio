@@ -1,6 +1,19 @@
 <div class="text-center favorite-box">
   <h1 class="text-center mt-5 mb-5">いいね一覧</h1>
-  <% @favorite_users.each do |user| %>
-    <%= link_to user.name, public_post_path(user) %><br>
+  　　<table border="1">
+        <tr>
+          <th>どこで転びましたか？</th>
+          <th>状況</th>
+          <th>このユーザーのページ</th>
+        </tr>
+      </table>
+    <% @favorite_posts .each do |post| %>
+      <table border="1">
+        <tr>
+          <td> <%= link_to post.title, public_post_path(post) %></td>
+          <td><%=  post.body %></td>
+          <td> <%=link_to "詳細", public_post_path(post) %></td>
+        </tr>
+      </table>
   <%end%>
 </div>

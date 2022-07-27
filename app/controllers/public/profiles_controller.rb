@@ -16,6 +16,7 @@ def favorites
  @favorite_posts = current_user.favorite_posts
 # @favorite_users = Post.joins(:favorites).where("posts.user_id <> ? and favorites.user_id <> ? ", current_user.id, current_user.id).map {|post|post.favorite_users}.flatten.uniq
  @favorite_users = Post.joins(:favorites).where("posts.user_id <> ? and favorites.user_id <> ? ", current_user.id, current_user.id).map {|favorite| favorite.user}.flatten.uniq
+
 end
 
 def create
