@@ -15,7 +15,8 @@
 日常生活でどんな箇所で多く転倒するかをイメージ図を使って明確に分かるようにする
 
 ## 設計書
-![Untitled Diagram-Page-2](https://user-images.githubusercontent.com/100500134/181265235-006164f0-973c-4825-9a49-227a37f6ee40.jpg)
+![Untitled Diagram-Page-2](https://user-images.githubusercontent.com/100500134/181268691-3628fafa-0221-42ea-999a-7d57481b012c.jpg)
+
 
 
 ## 開発環境
