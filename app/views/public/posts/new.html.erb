@@ -22,7 +22,7 @@
 
     <div class="form-inline  mb-4 row post-new-category d-flex ">
       <%= f.label "カテゴリ", class:"post-new-category-title" %>
-      <%= f.collection_select(:category_id, @categories, :id, :name) %>
+      <%= f.collection_select(:category_id, Category.all, :id, :name) %>
     </div>
     <%= f.submit "click" %>
   <% end %>
