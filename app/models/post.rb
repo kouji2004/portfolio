@@ -3,9 +3,9 @@ class Post < ApplicationRecord
   belongs_to :category
 
 # バリデーション機能
-  validates :title,length: { maximum: 7 }
-  validates :body,length: { maximum: 150 }
-  validates :prevention,length: { maximum: 150 }
+  validates :title,length: { maximum: 7 },presence: true
+  validates :body,length: { maximum: 150 },presence: true
+  validates :prevention,length: { maximum: 150 },presence: true
   validates :images, presence: true
 
 

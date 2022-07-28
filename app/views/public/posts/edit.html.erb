@@ -1,3 +1,12 @@
+<% if @post.errors.any? %>
+  <%= @post.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <div class="text-center">
   <%= form_with model: @post, url: public_post_path, method: :patch do |f| %>
     <h6 >どこで転びましたか？ (7文字以内)</h6>
@@ -12,7 +21,7 @@
 
     <div class="form-inline mt-4 mb-4 row" style="margin-left: 600px;">
       <%= f.label "カテゴリ", class: "col-2 d-flex justify-content-start" %>
-      <%= f.collection_select(:category_id, @categories, :id, :name) %>
+      <%= f.collection_select(:category_id, Category.all, :id, :name) %>
     </div>
     <%= f.submit "click" %>
   <% end %>
