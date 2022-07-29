@@ -8,7 +8,7 @@ def show
 end
 
 def edit
-  @profile = currentmap_user.profile_prepare
+  @profile = current_user.profile_prepare
 end
 
 # いいね一覧表示（ユーザーと投稿）
