@@ -30,17 +30,13 @@
           <figure class="profile-image">
             <%= image_tag current_user.profile_image,size:"50x50" %>
           </figure>
-          <%if current_user.name? %>
-            <p><%= @user.name %></p>
+          <%if @profile&.name %>
+            <p><%= @profile&.name %></p>
           <% else%>
-            <p>ゲストユーザー</p>
+            <p><%= @user.name %></p>
+
           <% end %>
 
-          <!--<#%if @profile.gender.nil? %>-->
-          <!--  <p><#%= @user.gender %></p>-->
-          <!--<#% else%>-->
-          <!--  <p>性別</p>-->
-          <!--<#% end %>-->
 
          <h4>自己紹介</h4>
           <%if @profile&.mainbody? %>

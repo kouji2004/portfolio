@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -9,12 +7,12 @@ class User < ApplicationRecord
 
     # いいね機能
     has_many :favorites, dependent: :destroy
-    
+
       # 投稿いいね一覧
       has_many :favorite_posts, through: :favorites, source: :post
       # プロフィール
       has_one :profile
-      
+
         # ボッチ演算子 &.
         def profile_image
           if profile&.image&.attached?
@@ -23,12 +21,12 @@ class User < ApplicationRecord
             'sample-author1.jpg'
           end
         end
-        
+
           # プロフィールの準備,論理演算　プロフィールがあればprofile更新 build_profile新規作成
           def profile_prepare
            profile || build_profile
           end
-            
+
             def get_image
               unless image.attached?
                 file_path = Rails.root.join('app/assets/images/no_image.jpg')
@@ -36,7 +34,7 @@ class User < ApplicationRecord
               end
                 image
             end
-              
+
               # ゲストログイン機能
               def self.guest
                 find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |user|
@@ -44,7 +42,7 @@ class User < ApplicationRecord
                   user.name = "guestuser"
                 end
               end
-                
+
                 # 検索方法分岐
                 def self.looks(search, word)
                   if search == "perfect_match"
@@ -59,12 +57,12 @@ class User < ApplicationRecord
                     @user = User.all
                   end
                 end
-                
+
                   # 退会機能
                   def active_for_authentication?
                     super && (is_delete == false)
                   end
-                  
+
                     # インスタンスメソッド管理者側で使うもの
                     def switch_flg(obj)
                       obj ? false : true

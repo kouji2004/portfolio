@@ -54,8 +54,8 @@ class Public::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    if @post.update(post_params)
-    redirect_to public_posts_path
+  if @post.update(post_params)
+     redirect_to public_posts_path
   else
     render :edit
   end
