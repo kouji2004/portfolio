@@ -34,12 +34,6 @@
 
           <p><%= @user.name %></p>
 
-        <!--<#%if @profile.gender.nil? %>-->
-        <!--  <p><#%= @user.gender %></p>-->
-        <!--<#% else%>-->
-        <!--  <p>性別</p>-->
-        <!--<#% end %>-->
-
         <h4>自己紹介</h4>
         <%if @profile&.mainbody? %>
           <p><%= @profile&.mainbody %></p>
