@@ -15,8 +15,8 @@
         <tr>
           <th>
             <figure class="profile-image">
-      <%= image_tag post.user.profile_image,size:"50x50" %>
-      <%= post.user.name%>
+              <%= image_tag post.user.profile_image,size:"50x50" %>
+              <%= post.user.name%>
             </figure>
           </th>
             <td><%= link_to post.category.name,public_posts_path(category: post.category.id) %></td>
