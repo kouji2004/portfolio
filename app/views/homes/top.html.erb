@@ -38,7 +38,7 @@
         </div>
        <% end %>
       <% end %>
- 
+
       <p class="search-bottom mt-3">カテゴリー検索</p>
       <div class="search-box text-center">
        <%@categories.each do |category|%>
@@ -47,10 +47,10 @@
         </div>
        <% end%>
       </div>
- 
+
       <p class="search-bottom mt-3">最近投稿したユーザー</p>
       <div class="search-box-bottom">
- 
+
        <% @users.each do |user| %>
         <%if user_signed_in? %>
          <p class="search-mini-box"> <%= image_tag user.profile_image,size:"50x50" %><%=link_to user.name,public_account_path(user) %></p><br>
@@ -62,5 +62,4 @@
     </div>
    <div class="paginate"><%= paginate @posts %></div>
   </div>
-
 </div>
