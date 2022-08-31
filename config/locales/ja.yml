@@ -17,7 +17,18 @@ ja:
               blank: "を入力してください"
             password:
               blank: "をを入力してください"
-    models:
-      user: ユーザー
-    attributes:
-        user:
+
+ja:
+  activerecord:
+    errors:
+      models:
+        post:
+          attributes:
+            title:
+              blank: "タイトルが空白です"
+            body:
+              blank: "転倒時の状況が空白です"
+            prevention:
+              blank: "転ばない為に何が必要ですか？が抜けています"
+            images:
+              blank: "写真が空白です"
