@@ -18,10 +18,6 @@ ja:
             password:
               blank: "をを入力してください"
 
-ja:
-  activerecord:
-    errors:
-      models:
         post:
           attributes:
             title:
